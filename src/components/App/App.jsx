@@ -24,7 +24,6 @@ export default function App() {
         setImages(prevImages => [...prevImages, ...hits]);
       } catch (error) {
         setError(error);
-        toast.error(`Error catch ${error}`);
       } finally {
         setIsLoading(false);
       }
@@ -34,12 +33,19 @@ export default function App() {
     }
   }, [searchQuery, page]);
 
+  const handleError = () => {
+    if (error !== null) {
+      toast.error(`Error ${error}`);
+    }
+  };
+
   const handleSubmit = value => {
     if (value !== '') {
       setSearchQuery(value);
       toast.success(`Search images ${value}`);
       setPage(1);
       setImages([]);
+      handleError();
     }
   };
 
