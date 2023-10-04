@@ -11,7 +11,8 @@ export default function ImageGalleryItem({
   handleClose,
 }) {
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  // const onModal = () => setModalIsOpen(!modalIsOpen);
+
+  const onModal = () => setModalIsOpen(!modalIsOpen);
 
   return (
     <li className={styles.ImageGalleryItem}>
@@ -20,13 +21,13 @@ export default function ImageGalleryItem({
         id={id}
         alt={tags}
         src={webformatUrl}
-        onClick={() => setModalIsOpen(true)}
+        onClick={onModal}
       />
       {modalIsOpen && (
         <Modal
           tags={tags}
           largeImageURL={largeImageUrl}
-          handleClose={() => setModalIsOpen(!modalIsOpen)}
+          handleClose={onModal}
         />
       )}
     </li>
